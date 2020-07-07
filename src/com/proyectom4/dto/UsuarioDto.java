@@ -4,14 +4,13 @@ import java.util.List;
 
 import com.proyectom4.dto.PersonaDto;
 
-public class UsuarioDto {
+public class UsuarioDto extends PersonaDto {
 	private int id_usuario;
 	private String nombre_usuario;
 	private String password_usuario;
 	private int roles_id_rol;
 	private int persona_id_persona;
 	private int usuario_activacion;
-	private List<PersonaDto> persona;
 	
 	public UsuarioDto() {
 		// TODO Auto-generated constructor stub

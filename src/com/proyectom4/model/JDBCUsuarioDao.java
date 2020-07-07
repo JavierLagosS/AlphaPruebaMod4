@@ -18,7 +18,8 @@ public class JDBCUsuarioDao implements UsuarioDao {
 
 	private final String SQL_DESACTIVAR = "UPDATE usuario SET usuario_activacion = 0 WHERE id_usuario=?";
 
-	private final String SQL_SELECT = "Select id_usuario, nombre_usuario, password_usuario, roles_id_rol, persona_id_persona, id_persona, nombre, apellido, email, telefono, direccion, sistema_prevision from usuario where usuario_activacion = 1";
+	private final String SQL_SELECT = "Select id_usuario, nombre_usuario, password_usuario, roles_id_rol, persona_id_persona, id_persona, nombre, "
+			+ "apellido, email, telefono, direccion, sistema_prevision from usuario u inner join persona p on p.id_persona = u.persona_id_persona where usuario_activacion = 1";
 
 	@Override
 	public List<UsuarioDto> select() throws SQLException {
@@ -46,7 +47,14 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				String password_usuario = rs.getString(3);
 				int roles_rol_id = rs.getInt(4);
 				int persona_id_persona = rs.getInt(5);
-
+				int id_persona = rs.getInt(6);
+				String nombre = rs.getString(7);
+				String apellido = rs.getString(8);
+				String email = rs.getString(9);
+				String telefono = rs.getString(10);
+				String direccion = rs.getString(11);
+				String sistema_prevision = rs.getString(12);
+				
 				// Llenamos el DTO y lo agregamos a la lista
 				UsuarioDto = new UsuarioDto();
 				UsuarioDto.setId_usuario(id_usuario);
@@ -54,6 +62,14 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				UsuarioDto.setPassword_usuario(password_usuario);
 				UsuarioDto.setRoles_id_rol(roles_rol_id);
 				UsuarioDto.setPersona_id_persona(persona_id_persona);
+				UsuarioDto.setId_persona(id_persona);
+				UsuarioDto.setNombre(nombre);
+				UsuarioDto.setApellido(apellido);
+				UsuarioDto.setEmail(email);
+				UsuarioDto.setTelefono(telefono);
+				UsuarioDto.setDireccion(direccion);
+				UsuarioDto.setSistema_prevision(sistema_prevision);
+				
 				usarios.add(UsuarioDto);
 			}
 		} finally {

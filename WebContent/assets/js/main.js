@@ -174,12 +174,54 @@ $(document).ready(function() {
 
 
 $(document).on("click", ".getDatosPersonales", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
-    $.get("obtenerjsonpersona", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
-        var $ul = $("<ul>").appendTo($("#somediv")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
-        $.each(responseJson, function(index, item) { // Iterate over the JSON array.
-            $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
-        });
-    });
+	var nombre = $(this).closest("tr").children("td").eq(2).html();
+	var apellido = $(this).closest("tr").children("td").eq(3).html();
+	var email = $(this).closest("tr").children("td").eq(4).html();
+	var telefono = $(this).closest("tr").children("td").eq(5).html();
+	var direccion = $(this).closest("tr").children("td").eq(6).html();
+	var sistema_prevision = $(this).closest("tr").children("td").eq(7).html();
+	$("#agregarPersona").find("input[name='nombre']").val(nombre);
+	$("#agregarPersona").find("input[name='apellido']").val(apellido);
+	$("#agregarPersona").find("input[name='email']").val(email);
+	$("#agregarPersona").find("input[name='telefono']").val(telefono);
+	$("#agregarPersona").find("input[name='direccion']").val(direccion);
+	$("#agregarPersona").find("input[name='sistema_prevision']").val(sistema_prevision);
+});
+
+$(document).on("click", ".editarDatosPersonales", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+	var usuario_nombre = $(this).closest("tr").children("td").eq(8).html();
+	var nombre = $(this).closest("tr").children("td").eq(2).html();
+	var apellido = $(this).closest("tr").children("td").eq(3).html();
+	var email = $(this).closest("tr").children("td").eq(4).html();
+	var telefono = $(this).closest("tr").children("td").eq(5).html();
+	var direccion = $(this).closest("tr").children("td").eq(6).html();
+	var sistema_prevision = $(this).closest("tr").children("td").eq(7).html();
+	$("#editarPersona").find("input[name='usuario_nombre']").val(usuario_nombre);
+	$("#editarPersona").find("input[name='nombre']").val(nombre);
+	$("#editarPersona").find("input[name='apellido']").val(apellido);
+	$("#editarPersona").find("input[name='email']").val(email);
+	$("#editarPersona").find("input[name='telefono']").val(telefono);
+	$("#editarPersona").find("input[name='direccion']").val(direccion);
+	$("#editarPersona").find("input[name='sistema_prevision']").val(sistema_prevision);
+});
+
+//MODAL Editar Usuario FUll
+$("#agregarPersona").on("submit", function(event) {
+	event.preventDefault();
+	var formdata = $(this).serialize();
+
+	console.log(formdata)
+
+	$.ajax({
+		url: base_url + getContextPath() + '/nuevapersona',
+		method: 'POST',
+		data: formdata,
+		success: function(data) {
+			// alert sweetalert2
+			$("#agregarPersonaModal").modal("hide");
+			location.reload();
+		}
+	});
 });
 
 
