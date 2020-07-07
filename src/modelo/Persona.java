@@ -2,7 +2,7 @@ package modelo;
 
 
 public class Persona {
-	String id_persona;
+	int id_persona;
 	String nombre;
 	String apellido;
 	String email;
@@ -18,7 +18,7 @@ public class Persona {
 	
 
 
-	public Persona(String id_persona, String nombre, String apellido, String email, String telefono, String direccion,
+	public Persona(int id_persona, String nombre, String apellido, String email, String telefono, String direccion,
 			String prevision) {
 		super();
 		this.id_persona = id_persona;
@@ -33,11 +33,11 @@ public class Persona {
 
 
 
-	public String getId_persona() {
+	public int getId_persona() {
 		return id_persona;
 	}
 
-	public void setId_persona(String id_persona) {
+	public void setId_persona(int id_persona) {
 		this.id_persona = id_persona;
 	}
 
