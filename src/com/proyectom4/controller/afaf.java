@@ -1,4 +1,4 @@
-package controlador;
+package com.proyectom4.controller;
 
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -7,20 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import modelo.Persona;
-import modelo.PersonaDao;
-import java.lang.*;
 /**
- * Servlet implementation class ProcesarDelete
+ * Servlet implementation class afaf
  */
-@WebServlet("/ProcesarDelete")
-public class ProcesarDelete extends HttpServlet {
+@WebServlet("/afaf")
+public class afaf extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ProcesarDelete() {
+    public afaf() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,21 +35,7 @@ public class ProcesarDelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id_persona = request.getParameter("id_persona");
-		int idP = Integer.parseInt(id_persona);
-		
-		Persona p1 = new Persona();
-		PersonaDao dao = new PersonaDao();
-		
-		try {
-			p1.setId_persona(idP);
-			
-			dao.eliminar(p1);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
-		
+		doGet(request, response);
 	}
 
 }

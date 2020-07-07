@@ -1,34 +1,34 @@
 function procesarFormulario() {
-    var nom = document.getElementById("nombre");
-    var ape = document.getElementById("apellido");
-    var telefono = document.getElementById("telefono");
-    var direccion = document.getElementById("direccion");
-    var ciudad = document.getElementById("ciudad");
+	var nom = document.getElementById("nombre");
+	var ape = document.getElementById("apellido");
+	var telefono = document.getElementById("telefono");
+	var direccion = document.getElementById("direccion");
+	var ciudad = document.getElementById("ciudad");
 
-    // div que contiene label y input
-    var datosFono = document.getElementById("datosFono");
+	// div que contiene label y input
+	var datosFono = document.getElementById("datosFono");
 
-    if ((direccion.value).length >= 100) {
-        direccion.after("la direccion tiene que ser mas corta")
-    }
-    if ((ciudad.value).length >= 30) {
-        ciudad.after(" la ciudad tiene que ser mas corta en letras")
-    }
+	if ((direccion.value).length >= 100) {
+		direccion.after("la direccion tiene que ser mas corta")
+	}
+	if ((ciudad.value).length >= 30) {
+		ciudad.after(" la ciudad tiene que ser mas corta en letras")
+	}
 
-    //validar nombre y apellidos
-    var letters = /^[A-Za-z]+$/;
-    nom.value.match(letters)
-    if (nom.value.match(letters)) {
+	//validar nombre y apellidos
+	var letters = /^[A-Za-z]+$/;
+	nom.value.match(letters)
+	if (nom.value.match(letters)) {
 
-    } else {
-        nom.after(" nombre incorrecto");
-    }
-    ape.value.match(letters)
-    if (ape.value.match(letters)) {
+	} else {
+		nom.after(" nombre incorrecto");
+	}
+	ape.value.match(letters)
+	if (ape.value.match(letters)) {
 
-    } else {
-        ape.after(" apellido incorrecto");
-    }
+	} else {
+		ape.after(" apellido incorrecto");
+	}
 
 }
 // Generamos las validaciones en vivo-
@@ -158,27 +158,61 @@ console.log("succes")
 
 });*/
 
-$(document).ready(function(){
+$(document).ready(function() {
 	$("body").on("click", ".eliminarPersona", function() {
 		var id_persona = Number($(this).closest("tr").children("td").eq(0).html());
 		var persona_activacion = 0;
 		$("#procesarEliminarPersona").find("input[name='id_persona']").val(id_persona);
 		$("#procesarEliminarPersona").find("input[name='persona_activacion']").val(persona_activacion);
-		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/ProcesarDelete');
+		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/EliminarPersona');
 
 	});
 
-	
+
 });
 
-	var base_url = window.location.origin;
-	// "http://stackoverflow.com"
-
-	var host = window.location.host;
-	// stackoverflow.com
 
 
+$(document).on("click", ".getDatosPersonales", function() {  // When HTML DOM "click" event is invoked on element with ID "somebutton", execute the following function...
+    $.get("obtenerjsonpersona", function(responseJson) {    // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response JSON...
+        var $ul = $("<ul>").appendTo($("#somediv")); // Create HTML <ul> element and append it to HTML DOM element with ID "somediv".
+        $.each(responseJson, function(index, item) { // Iterate over the JSON array.
+            $("<li>").text(item).appendTo($ul);      // Create HTML <li> element, set its text content with currently iterated item and append it to the <ul>.
+        });
+    });
+});
 
-	function getContextPath() {
-		return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
-	}
+
+
+//MODAL Nuevo Persona
+
+$("#agregarPersona").on("submit", function(event) {
+	event.preventDefault();
+	var formdata = $(this).serialize();
+
+	console.log(formdata)
+
+	$.ajax({
+		url: base_url + getContextPath() + '/nuevapersona',
+		method: 'POST',
+		data: formdata,
+		success: function(data) {
+			// alert sweetalert2
+			$("#agregarPersonaModal").modal("hide");
+			location.reload();
+		}
+	});
+});
+
+
+var base_url = window.location.origin;
+// "http://stackoverflow.com"
+
+var host = window.location.host;
+// stackoverflow.com
+
+
+
+function getContextPath() {
+	return window.location.pathname.substring(0, window.location.pathname.indexOf("/", 2));
+}
