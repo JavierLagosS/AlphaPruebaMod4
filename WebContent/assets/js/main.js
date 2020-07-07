@@ -164,7 +164,7 @@ $(document).ready(function(){
 		var persona_activacion = 0;
 		$("#procesarEliminarPersona").find("input[name='id_persona']").val(id_persona);
 		$("#procesarEliminarPersona").find("input[name='persona_activacion']").val(persona_activacion);
-		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/procesardelete');
+		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/ProcesarDelete');
 
 	});
 

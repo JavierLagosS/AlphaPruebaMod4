@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import modelo.Persona;
+import modelo.PersonaDao;
+import java.lang.*;
 /**
  * Servlet implementation class ProcesarDelete
  */
@@ -35,7 +38,21 @@ public class ProcesarDelete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		String id_persona = request.getParameter("id_persona");
+		int idP = Integer.parseInt(id_persona);
+		
+		Persona p1 = new Persona();
+		PersonaDao dao = new PersonaDao();
+		
+		try {
+			p1.setId_persona(idP);
+			
+			dao.eliminar(p1);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		
 	}
 
 }

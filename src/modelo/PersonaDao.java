@@ -17,7 +17,7 @@ public class PersonaDao {
 
 	public List<Persona> listar() {
 		List<Persona> lista = new ArrayList<>();
-		String consulta = "SELECT * FROM PERSONA";
+		String consulta = "select * from persona where persona_activacion = 1";
 
 		try {
 			con = c.conectar();
