@@ -14,6 +14,6 @@
 <!-- swif alert2 -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <!-- Custom script -->
-    <script src="assets/js/main.js"></script>
+    <script src="assets/js/modal.js"></script>
     
     

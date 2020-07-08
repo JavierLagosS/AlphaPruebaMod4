@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.Gson;
+
 import com.proyectom4.dto.PersonaDto;
 import com.proyectom4.model.JDBCPersonaDao;
 import com.proyectom4.model.PersonaDao;

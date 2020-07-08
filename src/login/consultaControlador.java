@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import conexionBD.conexion;
-import modelo.Usuario;
-import modelo.UsuarioDao;
+
 
 
 
