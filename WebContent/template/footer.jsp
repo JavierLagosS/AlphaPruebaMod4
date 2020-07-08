@@ -9,13 +9,15 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
+      <form action="LogoutServlet" method="POST">
       <div class="modal-body">
         ¿Está seguro que desea cerrar sesión?
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Cerrar Sesión</button>
+        <button type="submit" class="btn btn-success">Cerrar Sesión</button>
       </div>
+      </form>
     </div>
   </div>
 </div>

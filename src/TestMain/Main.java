@@ -2,8 +2,12 @@ package TestMain;
 
 import java.io.PrintWriter;
 import java.sql.SQLException;
+import java.util.List;
 
 import com.proyectom4.dto.PersonaDto;
+import com.proyectom4.dto.UsuarioDto;
+import com.proyectom4.model.AutenticationDao;
+import com.proyectom4.model.JDBCAutenticationDao;
 import com.proyectom4.model.JDBCPersonaDao;
 import com.proyectom4.model.JDBCUsuarioDao;
 import com.proyectom4.model.PersonaDao;
@@ -23,18 +27,17 @@ public class Main {
 		 * try { dao.insert(p); } catch (SQLException e) { // TODO Auto-generated catch
 		 * block e.printStackTrace(); }
 		 */
+		UsuarioDao dao = new JDBCUsuarioDao();
 		
-			UsuarioDao dao = new JDBCUsuarioDao();
-			
 		try {
-			if(dao.autenticacionAdmin("dfafaf", "fafa")) {
-				System.out.println("no existe");
-			}else {
-				System.out.println("existe");
-			}
-		} catch (Exception e) {
+			List<UsuarioDto> usuario = dao.selectByNombreUsuario("user_rene");
+			
+			System.out.println(usuario);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	
 
 	}
 }

@@ -7,14 +7,15 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                  <a class="nav-link active" href="index.jsp">Panel</a>
+                  <a class="nav-link active" href="panel.jsp">Panel</a>
                 </li>
                 <li class="nav-item ">
                   <a class="nav-link" href="miperfil.jsp">Mi Perfil</a>
                 </li>
               </ul>
               <div>
-                	<div class="text-white"><button data-toggle="modal" data-target="#salirModal" class="btn bg-transparent text-white">Logout</button></div>
+              <p>Bienvenido <c:out value="${sessionScope.nombre_usuario}"/></p>
+                	<div class="text-white"><button data-toggle="modal" data-target="#salirModal" class="btn bg-transparent text-dark">Logout</button></div>
               </div>
             </div>
           </nav>

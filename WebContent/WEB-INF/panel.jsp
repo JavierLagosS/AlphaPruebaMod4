@@ -1,10 +1,17 @@
-<jsp:include page='template/header.jsp'>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+	pageEncoding="ISO-8859-1"%>
+
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page session="true" %>
+
+<jsp:include page='../template/header.jsp'>
 <jsp:param name='title' value='Panel' />
 <jsp:param name='description' value='Panel' />
-</jsp:include>    
+</jsp:include>   
+
     <main style="">
     <header>
-		<%@ include file="template/parts/nav.jsp" %>	
+		<%@ include file="../template/parts/nav.jsp" %>	
     </header>
     <div class="separator-50"></div>
     <div class="container">
@@ -12,7 +19,7 @@
             <div class="col-md-3 mb-3">
                 <div class="card shadow bg-warning">
                     <div class="card-body text-center">
-                      <h5 class="card-title">Mi Perfil</h5>
+                      <h5 class="card-title">Mi Perfil de   </h5>
                       <a href="${pageContext.request.contextPath}/perfil" class="btn btn-primary">Ver Perfil</a>
                       
                     </div>
@@ -65,4 +72,4 @@
     </div>
     </main>
 
-<%@ include file="template/footer.jsp"%>
+<%@ include file="../template/footer.jsp"%>

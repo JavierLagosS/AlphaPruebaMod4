@@ -6,10 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.proyectom4.dto.RegistroAccidenteDto;
 import com.proyectom4.dto.UsuarioDto;
 
 public class JDBCRegistroAccidenteDao implements RegistroAccidenteDao {
-	private Connection usariosConn;
+	private Connection registrosConn;
 
 	private final String SQL_INSERT = "INSERT INTO registro_accidente"
 			+ "("
@@ -70,5 +72,43 @@ public class JDBCRegistroAccidenteDao implements RegistroAccidenteDao {
 			"INNER JOIN PERSONA P ON P.ID_PERSONA = U.PERSONA_ID_PERSONA\r\n" + 
 			"INNER JOIN TIPO T ON T.ID_TIPO = R.TIPO_ID_TIPO\r\n" + 
 			"WHERE R.REGISTRO_ACCIDENTE_ACTIVACION = 1;";
+	
+	@Override
+	public List<RegistroAccidenteDto> select() throws SQLException {
+
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+
+		RegistroAccidenteDto RegistroAccidenteDto = null;
+
+		List<RegistroAccidenteDto> registros = new ArrayList<RegistroAccidenteDto>();
+
+		try {
+
+			conn = (this.registrosConn != null) ? this.registrosConn : Conexion.getConnection();
+			stmt = conn.prepareStatement(SQL_SELECT);
+			rs = stmt.executeQuery();
+
+			while (rs.next()) {
+				// Por cada registro se recuperan los valores
+				// de las columnas y se crea un objeto DTO
+				// nombre, apellido, email, telefono, direccion, sistema_prevision
+
+				// Llenamos el DTO y lo agregamos a la lista
+				RegistroAccidenteDto = new RegistroAccidenteDto();
+				RegistroAccidenteDto.setId_registro_accidente(rs.getInt("id_registro_accidente"));
+
+				registros.add(RegistroAccidenteDto);
+			}
+		} finally {
+			Conexion.close(rs);
+			Conexion.close(stmt);
+			if (this.registrosConn == null) {
+				Conexion.close(conn);
+			}
+		}
+		return registros;
+	}
 
 }

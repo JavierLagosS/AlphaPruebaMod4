@@ -32,27 +32,28 @@
 					</div>
 				</div>
 				<div class="d-flex justify-content-center form_container">
-					<form  action="LoginServlet" method="post">
+					<form  action="Ingresar" method="post">
+						<p>${mensaje}</p>
 						<div class="input-group mb-3">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-user"></i></span>
 							</div>
-							<input type="text" name="user" id="user" class="form-control input_user" value="" placeholder="Usuario" required>
+							<input type="text" name="nombre_usuario" id="nombre_usuario" class="form-control input_user" value="" placeholder="Usuario" required>
 						</div>
 						<div class="input-group mb-2">
 							<div class="input-group-append">
 								<span class="input-group-text"><i class="fas fa-key"></i></span>
 							</div>
-							<input type="password" id="pass" name="pass" class="form-control input_pass" value="" placeholder="Contraseña" required>
+							<input type="password" id="password_usuario" name="password_usuario" class="form-control input_pass" value="" placeholder="Contraseña" required autocomplete="off">
 						</div>
 						<div class="form-group">
 							<div class="custom-control custom-checkbox">
-								<input type="checkbox" class="custom-control-input" id="customControlInline">
+								<input type="checkbox" class="custom-control-input" id="customControlInline" autocomplete="off">
 								<label class="custom-control-label" for="customControlInline">Recordar</label>
 							</div>
 						</div>
 							<div class="d-flex justify-content-center mt-3 login_container">
-				 	<button type="submit" id="Entrar" name="submit" class="btn login_btn">Login</button>
+				 	<button type="submit" id="Entrar" name="submit" class="btn login_btn" >Login</button>
 				   </div>
 					</form>
 				</div>
