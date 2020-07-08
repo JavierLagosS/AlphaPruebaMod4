@@ -9,10 +9,10 @@ import com.mysql.jdbc.Driver;
 
 public class Conexion {
 	//Registramos las constantes de conexion
-	private static String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	private static String JDBC_URL = "jdbc:mysql://localhost/dbproyectom4?useSSL=false";
+	private static String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
+	private static String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:root";
 	private static String JDBC_USER = "root";
-	private static String JDBC_PASS = "";
+	private static String JDBC_PASS = "root";
 	//generamos un atributo driver del tipo Driver null
 	static Driver  driver = null;
 	
