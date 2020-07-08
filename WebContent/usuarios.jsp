@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page='template/header.jsp'>
-	<jsp:param name='title' value='Panel' />
+	<jsp:param name='title' value='Usuarios - Panel' />
 	<jsp:param name='description' value='Panel' />
 </jsp:include>
 <main>
@@ -57,7 +57,7 @@
 											<button class="btn btn-warning editarDatosPersonales"  data-toggle="modal" data-target="#editarUsuarioFull">
 												<i class="fa fa-edit"></i>
 											</button>
-											<button class="btn btn-danger">
+											<button class="btn btn-danger eliminarUsuario">
 												<i class="fa fa-trash"></i>
 											</button>
 										</td>
@@ -204,13 +204,13 @@
 			</div>
 			<form id="editarPersona">
 				<div class="modal-body">
-					<div class="form-group">
+					<div class="form-group row">
 						<div class="col-md-12">
 							<label>Usuario</label> <input type="text" class="form-control"
 								name="usuario_nombre" placeholder="Ingrese un nombre de usuario">
 						</div>
-						<div class="col-md-12">
-							<label>Password</label> <input type="password"
+						<div class="col-md-12 mt-2">
+							<label class="text-danger">Asignar Nueva Password</label> <input type="password"
 								class="form-control" name="usuario_password"
 								placeholder="Ingrese un password">
 						</div>
