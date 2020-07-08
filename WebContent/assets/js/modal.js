@@ -5,6 +5,41 @@ $(document).ready(function() {
 		$("#procesarEliminarPersona").find("input[name='id_persona']").val(id_persona);
 		$("#procesarEliminarPersona").find("input[name='persona_activacion']").val(persona_activacion);
 		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/EliminarPersona');
+			
+		Swal.fire({
+			title: 'Eliminar',
+			showCancelButton: true,
+			confirmButtonColor: '#DD3333',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: 'Si',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
+
+
+
+			if (result.value) {
+
+				$.ajax({
+					url: base_url + getContextPath() + '/EliminarPersona',
+					method: 'POST',
+					data: {
+						id_persona: id_persona
+					},
+					success: function(response) {
+						console.log("enviado")
+					}
+				});
+
+
+				Swal.fire(
+					'Eliminado',
+					'Su archivo se ha eliminado.',
+					'success'
+				)
+				
+			}
+			location.reload();
+		})
 
 	});
 
