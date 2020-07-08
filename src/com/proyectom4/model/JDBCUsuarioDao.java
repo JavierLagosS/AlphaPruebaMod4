@@ -21,6 +21,17 @@ public class JDBCUsuarioDao implements UsuarioDao {
 	private final String SQL_SELECT = "Select id_usuario, nombre_usuario, password_usuario, roles_id_rol, persona_id_persona, id_persona, nombre, "
 			+ "apellido, email, telefono, direccion, sistema_prevision from usuario u inner join persona p on p.id_persona = u.persona_id_persona where usuario_activacion = 1";
 
+	private final String SQL_COMPROBAR_ADMIN = "SELECT "
+			+ "id_usuario, "
+			+ "nombre_usuario, "
+			+ "password_usuario, "
+			+ "roles_id_rol, "
+			+ "persona_id_persona "
+			+ "FROM usuario "
+			+ "WHERE roles_id_rol = 1 AND"
+			+ "nombre_usuario = ? AND"
+			+ "password_usuario = ?";
+	
 	@Override
 	public List<UsuarioDto> select() throws SQLException {
 
@@ -136,5 +147,70 @@ public class JDBCUsuarioDao implements UsuarioDao {
 			}
 		}
 		return rows;
+	}
+	
+	public boolean autenticacionPersona(String usuario, String password) {
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		try {
+			conn = (this.usariosConn != null) ? this.usariosConn : Conexion.getConnection();
+			
+			String consulta = "solicitud";
+			stmt = conn.prepareStatement(consulta);
+			stmt.setString(1, usuario);
+			stmt.setString(2, password);
+			rs = stmt.executeQuery();
+			
+			while (rs.next()) {
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Conexion.close(stmt);
+			if (this.usariosConn == null) {
+				Conexion.close(conn);
+			}
+		}
+		
+		return false;
+	}
+	
+	public boolean autenticacionAdmin(String usuario, String password) {
+		Connection conn = null;
+		ResultSet rs = null;
+		PreparedStatement stmt = null;
+		UsuarioDto UsuarioDto = null;
+		try {
+			conn = (this.usariosConn != null) ? this.usariosConn : Conexion.getConnection();
+			stmt = conn.prepareStatement(SQL_COMPROBAR_ADMIN);
+			String nombre_usuario = rs.getString(1);
+			String password_usuario = rs.getString(2);
+			System.out.println(usuario);
+			stmt.setString(1, nombre_usuario);
+			stmt.setString(2, password_usuario);
+			rs = stmt.executeQuery();			
+			
+			while (rs.next()) {
+				
+				return true;
+			}
+			UsuarioDto = new UsuarioDto();
+			UsuarioDto.setNombre_usuario(nombre_usuario);
+			UsuarioDto.setPassword_usuario(password_usuario);
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			Conexion.close(stmt);
+			if (this.usariosConn == null) {
+				Conexion.close(conn);
+			}
+		}
+		
+		return false;
 	}
 }

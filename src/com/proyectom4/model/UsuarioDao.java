@@ -25,5 +25,8 @@ public interface UsuarioDao {
 		throws SQLException;
 	
 	public List<UsuarioDto> select() throws SQLException;
+	
+	public boolean autenticacionPersona(String usuario, String password);
+	public boolean autenticacionAdmin(String usuario, String password);
 
 }

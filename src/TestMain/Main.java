@@ -5,7 +5,9 @@ import java.sql.SQLException;
 
 import com.proyectom4.dto.PersonaDto;
 import com.proyectom4.model.JDBCPersonaDao;
+import com.proyectom4.model.JDBCUsuarioDao;
 import com.proyectom4.model.PersonaDao;
+import com.proyectom4.model.UsuarioDao;
 
 public class Main {
 	public static void main(String[] args) {
@@ -22,22 +24,17 @@ public class Main {
 		 * block e.printStackTrace(); }
 		 */
 		
-		PersonaDao dao  = new JDBCPersonaDao();
-		PersonaDto p = new PersonaDto();
-		// String json = null;
-//		try {
-//			json = new Gson().toJson(dao.getById(1));
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-	   try {
-		    p.setId_persona(1);
-		    	
-		    System.out.println(p);
-	} catch (Exception e) {
-		e.printStackTrace();
-	}
+			UsuarioDao dao = new JDBCUsuarioDao();
+			
+		try {
+			if(dao.autenticacionAdmin("dfafaf", "fafa")) {
+				System.out.println("no existe");
+			}else {
+				System.out.println("existe");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 }
