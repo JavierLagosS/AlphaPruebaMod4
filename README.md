@@ -3,7 +3,7 @@
 
 ```java
 	private static String JDBC_DRIVER = "oracle.jdbc.driver.OracleDriver";
-	private static String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:nombreBaseDeDatos";
+	private static String JDBC_URL = "jdbc:oracle:thin:@localhost:1521:XE";
 	private static String JDBC_USER = "user";
 	private static String JDBC_PASS = "pass";
 ```
