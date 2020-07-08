@@ -12,6 +12,8 @@ Y Deben cargar los drivers de oracle en WEB-INF / lib
 
 ## Los Jar
 ##[standard.jar](http://www.java2s.com/Code/Jar/s/Downloadstandardjar.htm/)
+
 ##[jstl.jar](http://www.java2s.com/Code/Jar/j/Downloadjstljar.htm/)
+
 ##[jdbc14.jar](http://www.java2s.com/Code/Jar/o/Downloadojdbc14jar.htm/)
 
