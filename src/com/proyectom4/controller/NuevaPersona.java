@@ -32,7 +32,7 @@ public class NuevaPersona extends HttpServlet {
 		String nombre = request.getParameter("nombre");
 		String apellido = request.getParameter("apellido");
 		String email = request.getParameter("email");
-		String telefono = request.getParameter("cod_area")+ ""+request.getParameter("telefono");
+		String telefono = request.getParameter("telefono");
 		String direccion = request.getParameter("direccion");
 		String sistema_prevision = request.getParameter("sistema_prevision");
 		

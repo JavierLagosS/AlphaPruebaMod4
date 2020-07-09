@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import com.proyectom4.dto.AccidenteAbstracta;
 import com.proyectom4.dto.PersonaDto;
 import com.proyectom4.dto.RegistroAccidenteDto;
 import com.proyectom4.dto.UsuarioDto;
@@ -68,15 +67,7 @@ public class JDBCRegistroAccidenteDao implements RegistroAccidenteDao {
 			"INNER JOIN PERSONA P ON P.ID_PERSONA = U.PERSONA_ID_PERSONA\r\n" + 
 			"INNER JOIN TIPO T ON T.ID_TIPO = R.TIPO_ID_TIPO\r\n" + 
 			"WHERE R.REGISTRO_ACCIDENTE_ACTIVACION = 1;";
-	
-	private final String SQL_SELECT_CALL = "SELECT *  FROM    REGISTRO_ACCIDENTE R\r\n" + 
-			"INNER JOIN \r\n" + 
-			"    (SELECT P.ID_PERSONA, P.NOMBRE, P.APELLIDO, P.SISTEMA_PREVISION FROM REGISTRO_ACCIDENTE R \r\n" + 
-			"        INNER JOIN PERSONA P ON P.ID_PERSONA = R.PERSONA_ID_PERSONA) PR ON PR.ID_PERSONA = R.PERSONA_ID_PERSONA\r\n" + 
-			"INNER JOIN USUARIO U ON U.ID_USUARIO = R.USUARIO_ID_USUARIO\r\n" + 
-			"INNER JOIN PERSONA P ON P.ID_PERSONA = U.PERSONA_ID_PERSONA\r\n" + 
-			"INNER JOIN TIPO T ON T.ID_TIPO = R.TIPO_ID_TIPO\r\n" + 
-			"WHERE R.REGISTRO_ACCIDENTE_ACTIVACION = 1;";
+
 	
 	
 	private final String SQL_SELECT_SIMPLE ="SELECT "
@@ -85,10 +76,10 @@ public class JDBCRegistroAccidenteDao implements RegistroAccidenteDao {
 			+ "cargo_accidentado," //3
 			+ "descripcion," //4
 			+ "usuario_id_usuario," //5
-			+ "tipo_id_tipo" //6
-			+ "persona_id_persona" //7
-			+ "FROM    REGISTRO_ACCIDENTE R\r\n" + 
-			"WHERE R.REGISTRO_ACCIDENTE_ACTIVACION = 1;";
+			+ "tipo_id_tipo," //6
+			+ "persona_id_persona " //7
+			+ "from registro_accidente " + 
+			"where registro_accidente_activacion = 1";
 	
 	@Override
 	public List<RegistroAccidenteDto> select() throws SQLException {

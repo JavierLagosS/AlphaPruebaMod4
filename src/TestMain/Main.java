@@ -6,12 +6,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.proyectom4.dto.PersonaDto;
+import com.proyectom4.dto.RegistroAccidenteDto;
 import com.proyectom4.dto.UsuarioDto;
 import com.proyectom4.model.AutenticationDao;
 import com.proyectom4.model.JDBCAutenticationDao;
 import com.proyectom4.model.JDBCPersonaDao;
+import com.proyectom4.model.JDBCRegistroAccidenteDao;
 import com.proyectom4.model.JDBCUsuarioDao;
 import com.proyectom4.model.PersonaDao;
+import com.proyectom4.model.RegistroAccidenteDao;
 import com.proyectom4.model.UsuarioDao;
 
 public class Main {
@@ -28,14 +31,11 @@ public class Main {
 		 * try { dao.insert(p); } catch (SQLException e) { // TODO Auto-generated catch
 		 * block e.printStackTrace(); }
 		 */
-		UsuarioDao dao = new JDBCUsuarioDao();
+		RegistroAccidenteDao dao = new JDBCRegistroAccidenteDao();
 			
-		List<UsuarioDto> u = dao.selectByNombreUsuario("user_carlos");
-		
-			for (UsuarioDto persona : u) {
-				System.out.println(persona.getEmail());
-			}
-		
+		List<RegistroAccidenteDto> u = dao.select();
+		System.out.println(dao.select());
+			
 			
 			
 		

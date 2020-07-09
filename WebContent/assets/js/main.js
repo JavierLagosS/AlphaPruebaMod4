@@ -159,13 +159,47 @@ console.log("succes")
 });*/
 
 $(document).ready(function() {
+	
 	$("body").on("click", ".eliminarPersona", function() {
 		var id_persona = Number($(this).closest("tr").children("td").eq(0).html());
 		var persona_activacion = 0;
 		$("#procesarEliminarPersona").find("input[name='id_persona']").val(id_persona);
 		$("#procesarEliminarPersona").find("input[name='persona_activacion']").val(persona_activacion);
 		$("#eliminarPersonaModal").find("form").attr("action", base_url + getContextPath() + '/EliminarPersona');
+			Swal.fire({
+			title: 'Eliminar',
+			showCancelButton: true,
+			confirmButtonColor: '#DD3333',
+			cancelButtonColor: '#3085d6',
+			confirmButtonText: 'Si',
+			cancelButtonText: 'Cancelar'
+		}).then((result) => {
 
+
+
+			if (result.value) {
+
+				$.ajax({
+					url: base_url + getContextPath() + '/EliminarPersona',
+					method: 'POST',
+					data: {
+						id_persona: id_persona
+					},
+					success: function(response) {
+						console.log("enviado")
+					}
+				});
+
+
+				Swal.fire(
+					'Eliminado',
+					'Su archivo se ha eliminado.',
+					'success'
+				)
+				
+			}
+			location.reload();
+		})
 	});
 
 
@@ -247,7 +281,7 @@ $(document).ready(function() {
 		$("#editarPersona").find("input[name='sistema_prevision']").val(sistema_prevision);
 	});
 
-	//MODAL Editar Usuario FUll
+	//MODAL 
 	$("#agregarPersona").on("submit", function(event) {
 		event.preventDefault();
 		var formdata = $(this).serialize();
@@ -266,7 +300,21 @@ $(document).ready(function() {
 		});
 	});
 
-
+	// Modal Editar Datos Persona
+	$(document).on("click", ".editarDatosPersona", function() {
+		var nombre = $(this).closest("tr").children("td").eq(1).html();
+		var apellido = $(this).closest("tr").children("td").eq(2).html();
+		var email = $(this).closest("tr").children("td").eq(3).html();
+		var telefono = $(this).closest("tr").children("td").eq(4).html();
+		var direccion = $(this).closest("tr").children("td").eq(5).html();
+		var sistema_prevision = $(this).closest("tr").children("td").eq(6).html();
+		$("#EditarPersonaPersona").find("input[name='nombre']").val(nombre);
+		$("#EditarPersonaPersona").find("input[name='apellido']").val(apellido);
+		$("#EditarPersonaPersona").find("input[name='email']").val(email);
+		$("#EditarPersonaPersona").find("input[name='telefono']").val(telefono);
+		$("#EditarPersonaPersona").find("input[name='direccion']").val(direccion);
+		$("#EditarPersonaPersona").find("input[name='sistema_prevision']").val(sistema_prevision);
+	});
 
 
 }); // Cierre document ready

@@ -7,10 +7,10 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
               <ul class="navbar-nav mr-auto">
                 <li class="nav-item ">
-                  <a class="nav-link active" href="panel.jsp">Panel</a>
+                  <a class="nav-link active" href="Home">Panel</a>
                 </li>
                 <li class="nav-item ">
-                  <a class="nav-link" href="miperfil.jsp">Mi Perfil</a>
+                  <a class="nav-link" href="perfil">Mi Perfil</a>
                 </li>
               </ul>
               <div>
