@@ -1,6 +1,6 @@
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <jsp:include page='template/header.jsp'>
 <jsp:param name='title' value='Formulario Registro de Accidente' />
@@ -20,44 +20,44 @@
                     </div>
                     <div class="card-body">
                         <form action="" id="miPerfil">
-                        <c:forEach var="datos" items="${usuario}">
+                        <c:forEach var="datos" items="${datos}">
                             <div class="form-group row">
                                 
                                 <div class="col-md-6">
                                     <label for="nombre">Nombre</label>
-                                    <input id="nombre" class="form-control" type="text" name="nombre" value="${usuario.getNombre()}" disabled>
+                                    <input id="nombre" class="form-control" type="text" name="nombre" value="${datos.getNombre()}" disabled>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="apellido">Apellido</label>
-                                    <input id="apellido" class="form-control" type="text" name="apellido" value="pep�n" disabled>
+                                    <input id="apellido" class="form-control" type="text" name="apellido" value="${datos.getApellido()}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">
                                 
                                 <div class="col-md-6">
                                     <label for="email">Email</label>
-                                    <input id="email" class="form-control" type="text" name="email" value="emaildepepe@email.cl" disabled>
+                                    <input id="email" class="form-control" type="text" name="email" value="${datos.getEmail()}" disabled>
                                 </div>
                                 <div class="col-md-6">
-                                    <label for="telefono">Tel�fono</label>
-                                    <input id="telefono" class="form-control" type="text" name="telefono" value="+56999999999" disabled>
+                                    <label for="telefono">Teléfono</label>
+                                    <input id="telefono" class="form-control" type="text" name="telefono" value="${datos.getTelefono()}" disabled>
                                 </div>
                             </div>
                             <div class="form-group row">                                
                                 <div class="col-md-6">
-                                    <label for="direccion">Direcci�n</label>
-                                    <input id="direccion" class="form-control" type="text" name="direccion" value="Calle 003 Comuna de Pepe" disabled>
+                                    <label for="direccion">Dirección</label>
+                                    <input id="direccion" class="form-control" type="text" name="direccion" value="${datos.getDireccion()}" disabled>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="nombre_sistema">Sistema Previsional</label>
-                                    <input id="nombre_sistema" class="form-control" type="text" name="nombre_sistema" value="fonasa"  disabled>
+                                    <input id="nombre_sistema" class="form-control" type="text" name="nombre_sistema" value="${datos.getSistema_prevision()}"  disabled>
                                 </div>
                                 
                             </div>    
                             <div class="form-group row">                                
                                 <div class="col-md-6">
                                     <label for="nombre_rol">Rol</label>
-                                    <input id="nombre_rol" class="form-control" type="text" name="nombre_rol" value="Empleado" disabled>
+                                    <input id="nombre_rol" class="form-control" type="text" name="nombre_rol" value="${datos.getNombre_rol()}" disabled>
                                 </div>
                                 <div class="col-md-6">
                                     <label for="nombre_usuario">Username</label>
@@ -66,7 +66,7 @@
                                 
                             </div> 
                             </c:forEach>
-                            <button type="button" id="solicitarModificacion" class="btn btn-success my-3 float-right">Solicitar Modificaci�n</button>                      
+                            <button type="button" id="solicitarModificacion" class="btn btn-success my-3 float-right">Solicitar Modificación</button>                      
                         </form>
                     </div>
                 </div>

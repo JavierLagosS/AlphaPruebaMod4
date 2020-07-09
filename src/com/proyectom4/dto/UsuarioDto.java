@@ -3,6 +3,7 @@ package com.proyectom4.dto;
 import java.util.List;
 
 import com.proyectom4.dto.PersonaDto;
+import com.proyectom4.dto.RolesDto;
 
 public class UsuarioDto extends PersonaDto {
 	private int id_usuario;
@@ -11,6 +12,8 @@ public class UsuarioDto extends PersonaDto {
 	private int roles_id_rol;
 	private int persona_id_persona;
 	private int usuario_activacion;
+	private String nombre_rol;
+	private String sistema_prevision;
 	
 	public UsuarioDto() {
 		// TODO Auto-generated constructor stub
@@ -67,6 +70,24 @@ public class UsuarioDto extends PersonaDto {
 	public void setUsuario_activacion(int usuario_activacion) {
 		this.usuario_activacion = usuario_activacion;
 	}
+	
+	public String getNombre_rol() {
+		return nombre_rol;
+	}
+	
+
+	public void setNombre_rol(String nombre_rol) {
+		this.nombre_rol = nombre_rol;
+	}
+	
+
+	public String getSistema_prevision() {
+		return sistema_prevision;
+	}
+
+	public void setSistema_prevision(String sistema_prevision) {
+		this.sistema_prevision = sistema_prevision;
+	}
 
 	@Override
 	public String toString() {
@@ -74,6 +95,7 @@ public class UsuarioDto extends PersonaDto {
 				+ password_usuario + ", roles_id_rol=" + roles_id_rol + ", persona_id_persona=" + persona_id_persona
 				+ ", usuario_activacion=" + usuario_activacion + "]";
 	}
+
 
 	
 

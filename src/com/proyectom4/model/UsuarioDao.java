@@ -1,6 +1,7 @@
 package com.proyectom4.model;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 import com.proyectom4.dto.UsuarioDto;
 

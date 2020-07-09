@@ -13,6 +13,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 
 	private final String SQL_INSERT = "INSERT INTO usuario(nombre_usuario, password_usuario, roles_id_rol, persona_id_persona) VALUES(?, ?, ? ,?)";
 
+	
 	private final String SQL_UPDATE = "UPDATE usuario SET nombre_usuario = ?, password_usuario = ?, roles_id_rol = ?, persona_id_persona = ? WHERE id_usuario=?";
 
 	private final String SQL_DESACTIVAR = "UPDATE usuario SET usuario_activacion = 0 WHERE id_usuario=?";
@@ -23,9 +24,9 @@ public class JDBCUsuarioDao implements UsuarioDao {
 	private final String SQL_COMPROBAR_ADMIN = "SELECT " + "id_usuario, " + "nombre_usuario, " + "password_usuario, "
 			+ "roles_id_rol, " + "persona_id_persona " + "FROM usuario " + "WHERE roles_id_rol = 1 AND"
 			+ "nombre_usuario = ? AND" + "password_usuario = ?";
-	
-	private final String SQL_SELECT_BY_ID ="SELECT id_usuario, nombre_usuario, password_usuario, roles_id_rol, persona_id_persona, id_persona, nombre, \"\r\n" + 
-			"			+ \"apellido, email, telefono, direccion, sistema_prevision FROM usuario WHERE nombre_usuario = ?";
+
+	private static final String SQL_SELECT_BY_ID = "SELECT id_usuario, nombre_usuario, password_usuario, roles_id_rol, persona_id_persona, id_persona, nombre, \"\r\n"
+			+ "			+ \"apellido, email, telefono, direccion, sistema_prevision FROM usuario WHERE nombre_usuario = ?";
 
 	@Override
 	public List<UsuarioDto> select() throws SQLException {
@@ -87,7 +88,9 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		}
 		return usarios;
 	}
+
 	
+
 	@Override
 	public List<UsuarioDto> selectByNombreUsuario(String nombre_usuarioS) throws SQLException {
 
@@ -102,7 +105,22 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		try {
 
 			conn = (this.usariosConn != null) ? this.usariosConn : Conexion.getConnection();
-			stmt = conn.prepareStatement(SQL_SELECT_BY_ID);
+			stmt = conn.prepareStatement("Select "
+					+ "id_usuario, " //1
+					+ "nombre_usuario, " //2
+					+ "password_usuario, " //3
+					+ "roles_id_rol, " //4
+					+ "persona_id_persona, " //5
+					+ "id_persona, " //6
+					+ "nombre," //7
+					+ "apellido, " //8
+					+ "email, " //9
+					+ "telefono, " //10
+					+ "direccion, " //11
+					+ "sistema_prevision, " //12
+					+ "nombre_rol " //13
+					+ ""
+					+ "from usuario u inner join persona p on p.id_persona = u.persona_id_persona inner join roles r on r.id_rol = u.roles_id_rol where usuario_activacion = 1 and nombre_usuario = '"+nombre_usuarioS+"'");
 			rs = stmt.executeQuery();
 
 			while (rs.next()) {
@@ -121,6 +139,7 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				String telefono = rs.getString(10);
 				String direccion = rs.getString(11);
 				String sistema_prevision = rs.getString(12);
+				String nombre_rol = rs.getString(13);
 
 				// Llenamos el DTO y lo agregamos a la lista
 				UsuarioDto = new UsuarioDto();
@@ -136,7 +155,8 @@ public class JDBCUsuarioDao implements UsuarioDao {
 				UsuarioDto.setTelefono(telefono);
 				UsuarioDto.setDireccion(direccion);
 				UsuarioDto.setSistema_prevision(sistema_prevision);
-
+				UsuarioDto.setNombre_rol(nombre_rol);
+				
 				usarios.add(UsuarioDto);
 			}
 		} finally {
@@ -155,6 +175,9 @@ public class JDBCUsuarioDao implements UsuarioDao {
 		PreparedStatement stmt = null;
 		int rows = 0;
 		try {
+			
+			
+			
 			conn = (this.usariosConn != null) ? this.usariosConn : Conexion.getConnection();
 			stmt = conn.prepareStatement(SQL_INSERT);
 
@@ -269,6 +292,5 @@ public class JDBCUsuarioDao implements UsuarioDao {
 
 		return false;
 	}
-
 
 }

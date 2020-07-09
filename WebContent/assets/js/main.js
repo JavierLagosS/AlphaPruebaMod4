@@ -268,25 +268,6 @@ $(document).ready(function() {
 
 
 
-	//MODAL Nuevo Persona
-
-	$("#agregarPersona").on("submit", function(event) {
-		event.preventDefault();
-		var formdata = $(this).serialize();
-
-		console.log(formdata)
-
-		$.ajax({
-			url: base_url + getContextPath() + '/nuevapersona',
-			method: 'POST',
-			data: formdata,
-			success: function(data) {
-				// alert sweetalert2
-				$("#agregarPersonaModal").modal("hide");
-				location.reload();
-			}
-		});
-	});
 
 }); // Cierre document ready
 

@@ -3,12 +3,14 @@ package com.proyectom4.dto;
 import java.sql.Date; //  System.out.println("sql.Timestamp: "+sqlTimestamp);
 //http://carloszuluaga.wikidot.com/articulos:manejo-de-fechas-en-java-i
 
-public class RegistroAccidenteDto {
+public  class RegistroAccidenteDto {
+		
+	
 	private int id_registro_accidente;
 	private int usuario_id_usuario;
 	private int persona_id_persona;
 	private int tipo_id_tipo;
-	private Date fecha_accidentado;
+	private String fecha_accidentado;
 	private String cargo_accidentado;
 	private String descripcion;
 	private int registro_accidente_activacion;
@@ -53,11 +55,11 @@ public class RegistroAccidenteDto {
 		this.tipo_id_tipo = tipo_id_tipo;
 	}
 
-	public Date getFecha_accidentado() {
+	public String getFecha_accidentado() {
 		return fecha_accidentado;
 	}
 
-	public void setFecha_accidentado(Date fecha_accidentado) {
+	public void setFecha_accidentado(String fecha_accidentado) {
 		this.fecha_accidentado = fecha_accidentado;
 	}
 
@@ -93,8 +95,5 @@ public class RegistroAccidenteDto {
 				+ ", descripcion=" + descripcion + ", registro_accidente_activacion=" + registro_accidente_activacion
 				+ "]";
 	}
-	
-	
-	
 	
 }

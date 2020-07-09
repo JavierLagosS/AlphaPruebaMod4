@@ -44,9 +44,11 @@ public class ListarPerfil extends HttpServlet {
 		}else {
 			try {
 				UsuarioDao dao = new JDBCUsuarioDao();
-					
-				List<UsuarioDto> usuario = dao.selectByNombreUsuario(session.getAttribute("nombre_usuario"));
-				request.setAttribute("datos", usuario);
+				String nombre_usuario = (String) session.getAttribute("nombre_usuario");
+				List<UsuarioDto> datosUsuario = dao.selectByNombreUsuario(nombre_usuario);			
+				
+				
+				request.setAttribute("datos", datosUsuario);
 				request.setAttribute("section", "Listado de Personas");
 				request.setAttribute("add", "Agregar Persona");
 				request.getRequestDispatcher("perfil.jsp").forward(request, response);
